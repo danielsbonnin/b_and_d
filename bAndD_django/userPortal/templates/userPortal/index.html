@@ -1,0 +1,65 @@
+{% extends 'userPortal/base.html' %}
+{% load static %}
+{% block title %}User Home{% endblock %}
+{% block heading %}Home Page{% endblock %}
+
+{% block content %}
+<style>
+.button {
+    padding: 5px;
+}
+</style>
+<div row>
+    <div column="3">
+        <form class="" action="{% url 'userPortal:update-blocks' pk=user.child.pk %}" method="POST">
+            <fieldset>
+                <legend>Blocks: {{ user.child.blocks }}</legend>
+                {% csrf_token %}
+                <p>
+                <button class="button" type="submit" name="blocks" value="1">Add a Block</button>
+                <button class="button bg--error" type="submit" name="blocks" value="-1">Remove a Block</button>
+                </p>
+                <p>
+                    <label for="reason">Reason:</label>
+                    <input type="text" name="reason" required/></p>
+            </fieldset>
+        </form>
+    </div>
+    <div column="3">
+        <form class="" action="{% url 'userPortal:update-dollars' pk=user.child.pk %}" method="POST">
+            <fieldset>
+                <legend>Dollars: {{ user.child.dollars }}</legend>
+                {% csrf_token %}
+                <p>
+                <label for="dollars">Amount to add(or subtract):</label>
+                <input type="number" step="0.01" name="dollars" /></p>
+                <p><label for="reason">Reason:</label>
+                <input type="text" class="input--lg" name="reason" required/></p>
+                <button class="button--lg" type="submit" >Submit</button></p>
+            </fieldset>
+        </form>
+    </div>
+{% if user.child.is_ready_for_screens %}
+    <div column="3">
+        <fieldset>
+            <legend>Screentime: <span id="minutes"></span></legend>
+            <p><button class="button button--lg" id="startbtn">Start Screentime</button></p>
+            <button class="button button--warning" id="buybtn">Buy 30 min for $1</button>
+        </fieldset>
+   </div> <!-- forms column -->
+</div> <!-- forms row -->
+<script>
+    var minLeft = {{ user.child.minutes_left }};
+    var csrf_token = "{{ csrf_token }}";
+    var minutes_url = "{% url 'userPortal:update-minutes-left' pk=user.child.pk %}";
+    var buy_url = "{% url 'userPortal:buy-minutes' pk=user.child.pk %}";
+</script>
+{% else %}
+        <div column="3"></div> <!-- forms column -->
+</div> <!-- forms row -->
+    <a id="requirementsForm" href="{% url 'userPortal:daily-requirements' pk=user.child.pk %}">Screentime Requirements</a>
+{% endif %}
+    
+
+<script src="{% static 'userPortal/js/userPortal.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,57 @@
+    <h2>Children</h2>
+    <table>
+        {% for child in object_list %}
+            <tr>
+                <td class="username">{{ child.user.username }}
+            {% if child.no_screens_until and child.no_screens_until > view.this_day %}
+                <td class="minLeft">No screentime until {{ child.no_screens_until }}
+            {% elif view.this_day > child.child_last_login %}
+                <td class="minLeft">Minutes Left: {{ child.daily_minutes }}
+            {% else %}
+                <td class="minLeft">Minutes Left: {{ child.minutes_left }}
+            {% endif %}
+                <td class="dollars">Dollars: {{ child.dollars }}
+                <td class="blocks">Blocks: {{ child.blocks }}
+            {% if view.this_day > child.child_last_login %}
+                <td class="noLogin">Child has not logged in today
+            {% elif child.screentime_is_on %}
+                <td class="stIsOn">Screentime is <strong>ON</strong>
+            {% elif child.is_ready_for_screens %}
+                <td class="stIsOffButReady">Screentime is <strong>OFF</strong>
+            {% else %}
+                <td class="stIsOff">Screentime is <strong>OFF</strong>
+            {% endif %}
+            {% if child.get_latest_report and not child.get_latest_report.timestamp < view.this_day %}
+                <td><a href="{% url 'adminPortal:daily-report' pid=child.parent.id cid=child.id pk=child.get_latest_report.pk %}">Today's Daily Requirements</a>
+            {% else %}
+                <td>No Report Yet Today
+            {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+    
+    <style>
+        table {
+            //border: 5px solid black;
+            border-collapse: collapse;
+        }
+        tr {
+            height: 50px;
+        }
+        td {
+            padding: 15px;
+            border: 5px solid black;
+        }
+        .stIsOn {
+            background-color: green;
+        }
+        .stIsOff {
+            background-color: red;
+        }
+        .stIsOffButReady {
+            background-color: yellow;
+        }
+        .noLogin {
+            background-color: grey;
+        }
+    </style>

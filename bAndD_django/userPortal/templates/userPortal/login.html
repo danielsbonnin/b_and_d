@@ -1,0 +1,21 @@
+{% extends 'userPortal/base.html' %}
+
+{% block content %}
+{% if form.errors %}
+<p>Incorrect username or password</p>
+{% endif %}
+
+    <div row>
+    <div column="4"><span style="visibility: hidden;">s</span></div>
+    <div column="4">
+    <form method="post" action="{% url 'userPortal:user login' %}">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="login" />
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+</div>
+</div>
+
+
+{% endblock %}

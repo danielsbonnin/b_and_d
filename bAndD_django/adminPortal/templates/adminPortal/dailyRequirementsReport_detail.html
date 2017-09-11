@@ -1,0 +1,18 @@
+{% extends 'adminPortal/base.html' %}
+{% block content %}
+    <h2>{{ object.user.username }} Daily Requirements Submission</h2>
+    <h3>Today's Book:</h3>
+    <p> Title: {{ object.book_read }}</p>
+    <p>{{ object.reading_summary }}</p>
+    <h3>Today's Homework</h3>
+    {% if object.had_schoolwork %}
+    <p>(Had School homework)</p>
+    {% endif %}
+    {% if object.had_other_homework %}
+    <p>(Did non-school homework)</p>
+    {% endif %}
+    <p>{{ object.homework_description }}</p>
+    <h3>IXL skills completed</h3>
+    <p>Math: {{ object.ixl_math_completed }}</p>
+    <p>Language Arts: {{ object.ixl_language_arts_completed }}</p>
+{% endblock %}

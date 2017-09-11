@@ -1,0 +1,10 @@
+*.pyc
+eb-virt/
+db.cnf
+notepadWorkspace 
+oldBanDLog.txt 
+actualData.json
+oldBanDLog.txt
+oldStatic/
+secret.py
+banddold/

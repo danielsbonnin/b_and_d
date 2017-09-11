@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <link rel="stylesheet" type="text/css" media="screen" href="{% static 'userPortal/css/concise/concise.css' %}" />
+        <style>
+        h1 {
+            text-align: center;
+        }
+        </style>
+    </head>
+<body>
+<div container>
+    {% if user.is_authenticated %}
+    <div class="relative-element bg--primary">
+        <h1 class="">{{ user.username }} {% block heading %}{% endblock %}</h1>
+    </div>
+    <div container>
+        <ul class="group">
+            <li class="group-item"><a href="{% url 'userPortal:users home' %}">Home</a></li>
+            <li class="group-item"><a href="{% url 'userPortal:child-detail' pk=user.child.pk %}">Details</a></li>
+            <li class="group-item"><a href="{% url 'userPortal:ixl-report' pk=user.child.pk %}">IXL Report</a></li>
+            <li class="group-item">
+                <a href="{% url 'userPortal:coin store' pk=user.child.pk %}">Coin Store</a>
+            </li>
+            <li class="group-item"><a href="{% url 'userPortal:child logout' %}">logout</a></li>
+        </ul>
+    </div>
+    {% else %}
+        <h1>Login to Blocks and Dollars</h1>
+    {% endif %}
+</div>
+<div container>
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>

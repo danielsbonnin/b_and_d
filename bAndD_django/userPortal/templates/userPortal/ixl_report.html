@@ -1,0 +1,49 @@
+{% extends 'userPortal/base.html' %}
+{% block heading %}IXL Report {% endblock %}
+{% block content %}
+<h2>IXL Report</h2>
+<table class="table--responsive table--border table--fillEven">
+    <thead>
+        <tr>
+            <th>Range
+            <th>Submissions
+            <th>Math Count
+            <th>Math Daily Avg.
+            <th>Lang. Arts Count
+            <th>Lang. Arts Daily Avg.
+        </tr>
+    </thead>
+    <tr>
+        <td>1 Year
+        <td>{{ yearly_count }}
+        <td>{{ math_this_year }}
+        <td>{{ math_avg_this_year }}
+        <td>{{ la_this_year }}
+        <td>{{ la_avg_this_year }}
+    </tr>
+    <tr>
+        <td>30 days
+        <td>{{ monthly_count }}
+        <td>{{ math_this_month }}
+        <td>{{ math_avg_this_month }}
+        <td>{{ la_this_month }}
+        <td>{{ la_avg_this_month }}
+    </tr>
+    <tr>
+        <td>1 Week
+        <td>{{ weekly_count }}
+        <td>{{ math_this_week }}
+        <td>{{ math_avg_this_week }}
+        <td>{{ la_this_week }}
+        <td>{{ la_avg_this_week }}
+    </tr>
+    <tr>
+        <td>This Week
+        <td>{{ since_sunday_count }}
+        <td>{{ math_since_sunday }}
+        <td>{{ math_avg_since_sunday }}
+        <td>{{ la_since_sunday }}
+        <td>{{ la_avg_since_sunday }}
+    </tr>
+</table>
+{% endblock %}

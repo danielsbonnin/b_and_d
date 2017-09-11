@@ -1,0 +1,10 @@
+{% extends 'userPortal/base.html' %}
+{% block title %}Update{% endblock %}
+{% block heading %}{{ user.username }}Update{% endblock %}
+{% block content %}
+    <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update" />
+    </form>
+{% endblock %}

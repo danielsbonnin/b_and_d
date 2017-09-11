@@ -1,0 +1,32 @@
+{% extends 'userPortal/base.html' %}
+{% block title %}Daily Requirements{% endblock %}
+{% block heading %}Daily Requirements{% endblock %}
+{% block content %}
+    <form action="" method="POST">
+    <fieldset>
+        <legend>Daily Requirements Data</legend>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit"/>
+    </fieldset>
+    </form>
+    <style>
+    fieldset {
+        width: 500px;
+    }
+    legend {
+        font-size: 20px;
+    }
+    label {
+        display: block;
+        font-weight: bold;
+    }
+    input {
+        display: inline-block;
+    }
+    .helptext {
+        display: block;
+        font-style: italic;
+    }
+    </style>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="{% static 'adminPortal/js/adminPortal.js' %}"></script>
+    <script>
+        var childrenListURL = "{% url 'adminPortal:children list' pid=user.id %}";
+        var csrf_token = "{{ csrf_token }}";
+    </script>
+</head>
+<body>
+<h1>Admin (Parent) Home Page {{ request.user.username }}</h1>
+<a href="{% url 'adminPortal:admin home' %}">Home</a>
+<a href="{% url 'adminPortal:coin store review' pid=user.id %}">Coin Store Review</a>
+<a href="{% url 'adminPortal:admin login' %}">login</a>
+<a href="{% url 'adminPortal:admin logout' %}">logout</a>
+{% block content %}
+{% endblock %}
+</body>
+</html>

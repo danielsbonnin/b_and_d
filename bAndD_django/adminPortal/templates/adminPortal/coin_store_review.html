@@ -1,0 +1,15 @@
+{% extends 'adminPortal/base.html' %}
+{% block content %}
+    <h2>Store Item Requests</h2>
+    <table border="1">
+        {% for request in object_list %}
+        <tr>
+            <td>{{ request.child.username }}
+            <td>{{ request.name }}
+            <td>{{ request.description }}
+            <td><a href="{{ request.link }}" target="_blank">Link</a>
+            <td>{{ request.date_of_request }}
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

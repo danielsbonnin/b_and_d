@@ -1,0 +1,4 @@
+Django==1.11.5
+mod-wsgi==4.5.18
+PyMySQL==0.7.11
+pytz==2017.2

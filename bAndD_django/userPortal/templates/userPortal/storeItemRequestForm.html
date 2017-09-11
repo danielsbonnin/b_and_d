@@ -1,0 +1,10 @@
+{% extends 'userPortal/base.html' %}
+{% block title %}Store Item Request Form{% endblock %}
+{% block heading %}Store Item Request{% endblock %}
+{% block content %}
+    <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" />
+    </form>
+{% endblock %}

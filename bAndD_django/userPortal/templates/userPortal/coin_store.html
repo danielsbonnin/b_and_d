@@ -1,0 +1,39 @@
+{% extends 'userPortal/base.html' %}
+{% block heading %}Coin Store{% endblock %}
+{% block content %}
+<h2>Coin Store</h2>
+<table class="table--responsive table--border table--fillEven">
+    <thead>
+        <tr>
+            <th>Name:</th>
+            <th>Description:</th>
+            <th>Link:</th>
+            <th>Price:</th>
+            <th>Edit:</th>
+        </tr>
+    </thead>
+    <tr>
+        <td>Bell Huey II Helicopter</td>
+        <td>Multi-purpose helicopter, new, 14 passenger</td>
+        <td><a href="http://www.bellhelicopter.com/commercial/bell-huey-ii">Link</a></td>
+        <td>20</td>
+        <td></td>
+    </tr>
+    {% for item in store_items %}
+    <tr>
+        <td>{{ item.name }} </td>
+        <td>{{ item.description }}
+        <td><a href="{{ item.link }}">Link</a>
+        <td>{{ item.price }}
+        <td>Edit
+    </tr>
+    {% endfor %}
+        
+</table>
+<style>
+td {
+    white-space:nowrap;
+}
+</style>
+<a href="{% url 'userPortal:store item request' pk=user.child.pk %}">Request a new store item</a>
+{% endblock %}
